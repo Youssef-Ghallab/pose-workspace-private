@@ -6,7 +6,7 @@ It contains two main methodological tracks plus the detector weights used by the
 
 - [`yolo26det/`](./yolo26det): the bottom-up / end-to-end Ultralytics pose-estimation line of work developed by my colleague. This path predicts pose directly in one model family and serves as one of the two main techniques in the workspace.
 - [`ViTPose/`](./ViTPose): the top-down pipeline, where person boxes are provided by a detector and then refined with ViTPose for keypoint prediction and downstream localization.
-
+- Fine-tuning weights can be found here: [spiideosynloc-pose-weights](https://huggingface.co/YoussefGh02/spiideosynloc-pose-weights)
 ## Where To Start
 
 If you are new to the repo, the best entry points are:
