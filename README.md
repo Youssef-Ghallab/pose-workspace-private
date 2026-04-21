@@ -33,7 +33,7 @@ Useful places inside it:
 
 ### 2. Detector-side scripts
 
-The folder [`yolo26det/`](./yolo26det) contains compact Ultralytics scripts that were copied into this workspace for detector training/evaluation experiments.
+The folder [`yolo26det/`](./yolo26det) contains compact Ultralytics scripts for detector training/evaluation experiments.
 
 Start with:
 
