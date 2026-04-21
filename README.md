@@ -5,7 +5,7 @@ This repository is the top-level workspace for the SoccerNet / SpiideoSynLoc exp
 It contains three main components:
 
 - [`ViTPose/`](./ViTPose): the main top-down pose pipeline, training code, Slurm jobs, and LocSim evaluation code.
-- [`yolo26det/`](./yolo26det): Ultralytics detector-side scripts used as a lightweight detector baseline workspace.
+- [`yolo26det/`](./yolo26det): copied Ultralytics baseline scripts. In practice, this folder is mainly useful as the legacy end-to-end pose baseline workspace rather than as the detector used by the ViTPose top-down pipeline.
 - [`RT_DETR/`](./RT_DETR): RT-DETR weights used by the config-driven detector-to-pose evaluation flow.
 
 ## Where To Start
@@ -14,7 +14,7 @@ If you are new to the repo, the best entry points are:
 
 - [`ViTPose/README_PROJECT.md`](./ViTPose/README_PROJECT.md): project-specific guide for training, evaluation, detector integration, and current experiment layout.
 - [`ViTPose/README.md`](./ViTPose/README.md): upstream ViTPose / MMPose documentation.
-- [`yolo26det/README.md`](./yolo26det/README.md): detector-side notes for the Ultralytics scripts copied into this workspace.
+- [`yolo26det/README.md`](./yolo26det/README.md): notes for the copied Ultralytics baseline scripts.
 
 ## Recommended Navigation
 
@@ -31,9 +31,15 @@ Useful places inside it:
 - [`ViTPose/eval_soccernet_rtdetr_test_fixed_threshold.sbatch`](./ViTPose/eval_soccernet_rtdetr_test_fixed_threshold.sbatch): fixed-threshold RT-DETR test job.
 - [`ViTPose/eval_soccernet_oracle_test_fixed_threshold.sbatch`](./ViTPose/eval_soccernet_oracle_test_fixed_threshold.sbatch): fixed-threshold oracle test job.
 
-### 2. Detector-side scripts
+### 2. Legacy Ultralytics baseline scripts
 
-The folder [`yolo26det/`](./yolo26det) contains compact Ultralytics scripts for detector training/evaluation experiments.
+The folder [`yolo26det/`](./yolo26det) contains compact Ultralytics scripts copied from an earlier baseline setup.
+
+The important distinction is:
+
+- this folder is not the detector component used inside the current `YOLO + ViTPose` top-down pipeline
+- the evaluation script there is an end-to-end Ultralytics pose path
+- some files still contain detector-training commands from the copied source environment, so treat it as a legacy baseline workspace rather than the main maintained pipeline
 
 Start with:
 
@@ -79,4 +85,4 @@ For most tasks, follow this path:
 3. Launch training or evaluation using the matching script under [`ViTPose/`](./ViTPose).
 4. Inspect outputs under [`ViTPose/evaluation/`](./ViTPose/evaluation) or local Slurm logs.
 
-If you specifically need the detector scripts rather than the pose pipeline, use [`yolo26det/README.md`](./yolo26det/README.md).
+If you specifically need the copied Ultralytics baseline scripts rather than the maintained `ViTPose` pipeline, use [`yolo26det/README.md`](./yolo26det/README.md).
