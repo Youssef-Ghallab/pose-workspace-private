@@ -4,9 +4,8 @@ This repository is the top-level workspace for the SoccerNet / SpiideoSynLoc exp
 
 It contains three main components:
 
-- [`ViTPose/`](./ViTPose): the main top-down pose pipeline, training code, Slurm jobs, and LocSim evaluation code.
-- [`yolo26det/`](./yolo26det): copied Ultralytics baseline scripts. In practice, this folder is mainly useful as the legacy end-to-end pose baseline workspace rather than as the detector used by the ViTPose top-down pipeline.
-- [`RT_DETR/`](./RT_DETR): RT-DETR weights used by the config-driven detector-to-pose evaluation flow.
+- [`ViTPose/`](./ViTPose): the main top-down pose pipeline, training code, Slurm jobs, and LocSim evaluation code (top down).
+- [`yolo26det/`](./yolo26det): this folder is for end-to-end pose esttimation (bottom up).
 
 ## Where To Start
 
