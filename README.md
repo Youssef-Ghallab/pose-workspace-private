@@ -2,24 +2,40 @@
 
 This repository is the top-level workspace for the SoccerNet / SpiideoSynLoc experiments in this project.
 
-It contains three main components:
+It contains two main methodological tracks plus the detector weights used by the top-down track:
 
-- [`ViTPose/`](./ViTPose): the main top-down pose pipeline, training code, Slurm jobs, and LocSim evaluation code (top down).
-- [`yolo26det/`](./yolo26det): this folder is for end-to-end pose esttimation (bottom up).
+- [`yolo26det/`](./yolo26det): the bottom-up / end-to-end Ultralytics pose-estimation line of work developed by my colleague. This path predicts pose directly in one model family and serves as one of the two main techniques in the workspace.
+- [`ViTPose/`](./ViTPose): the top-down pipeline, where person boxes are provided by a detector and then refined with ViTPose for keypoint prediction and downstream localization.
 
 ## Where To Start
 
 If you are new to the repo, the best entry points are:
 
+- [`yolo26det/README.md`](./yolo26det/README.md): overview of the bottom-up / end-to-end Ultralytics branch.
 - [`ViTPose/README_PROJECT.md`](./ViTPose/README_PROJECT.md): project-specific guide for training, evaluation, detector integration, and current experiment layout.
 - [`ViTPose/README.md`](./ViTPose/README.md): upstream ViTPose / MMPose documentation.
-- [`yolo26det/README.md`](./yolo26det/README.md): notes for the copied Ultralytics baseline scripts.
 
 ## Recommended Navigation
 
-### 1. Main project code
+### 1. Bottom-up / End-to-end branch
 
-Most of the active work in this workspace lives under [`ViTPose/`](./ViTPose).
+The folder [`yolo26det/`](./yolo26det) contains the Ultralytics-based end-to-end pose baseline.
+
+This branch is useful if you want to:
+
+- inspect the bottom-up / end-to-end approach in this workspace
+- see the earlier Ultralytics training and evaluation scripts
+- compare that approach against the top-down `ViTPose` pipeline
+
+Start with:
+
+- [`yolo26det/README.md`](./yolo26det/README.md)
+- [`yolo26det/train.py`](./yolo26det/train.py)
+- [`yolo26det/evaluate_spiideo_val.py`](./yolo26det/evaluate_spiideo_val.py)
+
+### 2. Top-down branch
+
+The folder [`ViTPose/`](./ViTPose) contains the detector-plus-pose pipeline.
 
 Useful places inside it:
 
@@ -29,22 +45,6 @@ Useful places inside it:
 - [`ViTPose/eval_soccernet_yolo_test_fixed_threshold.sbatch`](./ViTPose/eval_soccernet_yolo_test_fixed_threshold.sbatch): fixed-threshold YOLO test job.
 - [`ViTPose/eval_soccernet_rtdetr_test_fixed_threshold.sbatch`](./ViTPose/eval_soccernet_rtdetr_test_fixed_threshold.sbatch): fixed-threshold RT-DETR test job.
 - [`ViTPose/eval_soccernet_oracle_test_fixed_threshold.sbatch`](./ViTPose/eval_soccernet_oracle_test_fixed_threshold.sbatch): fixed-threshold oracle test job.
-
-### 2. Legacy Ultralytics baseline scripts
-
-The folder [`yolo26det/`](./yolo26det) contains compact Ultralytics scripts copied from an earlier baseline setup.
-
-The important distinction is:
-
-- this folder is not the detector component used inside the current `YOLO + ViTPose` top-down pipeline
-- the evaluation script there is an end-to-end Ultralytics pose path
-- some files still contain detector-training commands from the copied source environment, so treat it as a legacy baseline workspace rather than the main maintained pipeline
-
-Start with:
-
-- [`yolo26det/README.md`](./yolo26det/README.md)
-- [`yolo26det/train.py`](./yolo26det/train.py)
-- [`yolo26det/evaluate_spiideo_val.py`](./yolo26det/evaluate_spiideo_val.py)
 
 ### 3. Evaluation outputs
 
@@ -77,11 +77,11 @@ Those files are expected to live locally in the workspace but not be versioned i
 
 ## Practical Workflow
 
-For most tasks, follow this path:
+For most tasks, choose the branch you care about first:
 
-1. Read [`ViTPose/README_PROJECT.md`](./ViTPose/README_PROJECT.md).
-2. Choose the relevant config under [`ViTPose/configs/`](./ViTPose/configs).
-3. Launch training or evaluation using the matching script under [`ViTPose/`](./ViTPose).
-4. Inspect outputs under [`ViTPose/evaluation/`](./ViTPose/evaluation) or local Slurm logs.
+1. If you want the bottom-up / end-to-end Ultralytics approach, start with [`yolo26det/README.md`](./yolo26det/README.md).
+2. If you want the top-down detector-plus-ViTPose approach, start with [`ViTPose/README_PROJECT.md`](./ViTPose/README_PROJECT.md).
+3. Use the matching scripts and configs for that branch.
+4. Inspect outputs under [`ViTPose/evaluation/`](./ViTPose/evaluation) or the relevant local logs.
 
-If you specifically need the copied Ultralytics baseline scripts rather than the maintained `ViTPose` pipeline, use [`yolo26det/README.md`](./yolo26det/README.md).
+The repo is meant to document both techniques, not only `ViTPose`, so both entrypoints are first-class depending on which method you want to work with.
