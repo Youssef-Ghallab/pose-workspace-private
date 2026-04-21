@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.venv/
+venv/
+env/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# Data
+data/
+ViTPose/data/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# Weights and model artifacts
+*.pth
+*.pt
+*.onnx
+*.engine
+*.ckpt
+ViTPose/YOLO_weights/
+RT_DETR/*.pt
+yolo26det/**/*.pt
+
+# Logs and reports
+logs/
+slurm_logs/
+reports/
+ViTPose/logs/
+ViTPose/slurm_logs/
+ViTPose/evaluation/
+
+# Training / runtime outputs
+work_dirs/
+ViTPose/work_dirs/
+*.log
+*.log.json
+
+# Build / packaging
+*.egg-info/
+build/
+dist/

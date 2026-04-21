@@ -1,0 +1,26 @@
+run_name: soccernet_oracle_test
+repo_root: /nfs-stor/youssef.ghallab/pose/ViTPose
+
+pose:
+  conda_env: vitpose
+  config: /nfs-stor/youssef.ghallab/pose/ViTPose/configs/body/2d_kpt_sview_rgb_img/topdown_heatmap/soccernet/ViTPose_small_simple_soccernet_fhd_256x192.py
+  checkpoint: /nfs-stor/youssef.ghallab/pose/ViTPose/work_dirs/soccernet_fhd/epoch_30.pth
+  device: cuda:0
+  samples_per_gpu: 16
+  workers_per_gpu: 4
+
+detector:
+  type: oracle
+  label: Oracle
+
+data:
+  ann_file: /nfs-stor/youssef.ghallab/pose/ViTPose/data/soccernet_fhd/annotations/test.json
+  img_prefix: /nfs-stor/youssef.ghallab/pose/data/SoccerNet/SpiideoSynLoc/fullhd/test/
+
+evaluation:
+  output_dir: /nfs-stor/youssef.ghallab/pose/ViTPose/evaluation/oracle_test_fixed_threshold
+  position_keypoint_index: 1
+  score_threshold: 0.22465507686138153
+  threshold_tune_ratio: 0.0
+  threshold_tune_seed: 0
+  overwrite: true

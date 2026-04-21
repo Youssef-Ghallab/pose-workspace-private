@@ -1,0 +1,34 @@
+run_name: soccernet_yolo_test
+repo_root: /nfs-stor/youssef.ghallab/pose/ViTPose
+
+pose:
+  conda_env: vitpose
+  config: /nfs-stor/youssef.ghallab/pose/ViTPose/configs/body/2d_kpt_sview_rgb_img/topdown_heatmap/soccernet/ViTPose_small_simple_soccernet_fhd_256x192.py
+  checkpoint: /nfs-stor/youssef.ghallab/pose/ViTPose/work_dirs/soccernet_fhd/epoch_30.pth
+  device: cuda:0
+  samples_per_gpu: 16
+  workers_per_gpu: 4
+
+detector:
+  type: yolo
+  label: YOLO
+  conda_env: vitpose
+  weights: /nfs-stor/youssef.ghallab/pose/ViTPose/YOLO_weights/best.pt
+  device: cuda:0
+  imgsz: 1024
+  conf: 0.001
+  iou: 0.7
+  max_det: 300
+  batch_size: 16
+
+data:
+  ann_file: /nfs-stor/youssef.ghallab/pose/ViTPose/data/soccernet_fhd/annotations/test.json
+  img_prefix: /nfs-stor/youssef.ghallab/pose/data/SoccerNet/SpiideoSynLoc/fullhd/test/
+
+evaluation:
+  output_dir: /nfs-stor/youssef.ghallab/pose/ViTPose/evaluation/yolo_test_fixed_threshold
+  position_keypoint_index: 1
+  score_threshold: 0.2261764783553506
+  threshold_tune_ratio: 0.0
+  threshold_tune_seed: 0
+  overwrite: true
